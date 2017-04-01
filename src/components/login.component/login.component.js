@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, TextInput, Button, Alert, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Link } from 'react-router-native';
 
 class Login extends React.Component {
 
@@ -39,7 +40,10 @@ class Login extends React.Component {
                         <Text style={styles.button}> LOGIN </Text>
                     </TouchableOpacity>
 
-                    <Text style={styles.newAccLink}>Create new account</Text>
+                    <Link to="/signup">
+                        <Text style={styles.newAccLink}>Create new account</Text>
+                    </Link>
+
                 </View>
             </KeyboardAvoidingView>
         );
