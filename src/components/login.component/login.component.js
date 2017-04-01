@@ -19,6 +19,9 @@ class Login extends React.Component {
                     <Text style={styles.title}>Where you can connect!</Text>
                 </View>
                 <View style={styles.form}>
+
+                    <Text style={styles.loginText}>Getting Started</Text>
+
                     <TextInput
                         placeholder="Enter email"
                         placeholderTextColor="#ffffff"
@@ -62,6 +65,14 @@ const styles = StyleSheet.create({
     },
     form: {
         padding:20
+    },
+    loginText: {
+        textAlign: 'center',
+        fontSize: 30,
+        color: '#ffffff',
+        opacity: 0.8,
+        paddingBottom: 25,
+        fontFamily: 'sans-serif-thin'
     },
     input: {
         height: 40,
