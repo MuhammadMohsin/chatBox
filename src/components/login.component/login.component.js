@@ -38,6 +38,8 @@ class Login extends React.Component {
                     <TouchableOpacity style={styles.button_container} onPress={this._loginHandler}>
                         <Text style={styles.button}> LOGIN </Text>
                     </TouchableOpacity>
+
+                    <Text style={styles.newAccLink}>Create new account</Text>
                 </View>
             </KeyboardAvoidingView>
         );
@@ -73,6 +75,14 @@ const styles = StyleSheet.create({
         opacity: 0.8,
         paddingBottom: 25,
         fontFamily: 'sans-serif-thin'
+    },
+    newAccLink: {
+        textAlign: 'center',
+        fontSize: 14,
+        color: '#ffffff',
+        opacity: 0.8,
+        paddingTop: 25,
+        fontFamily: 'sans-serif-medium'
     },
     input: {
         height: 40,
