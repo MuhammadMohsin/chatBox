@@ -3,6 +3,11 @@ import { Text, View, StyleSheet, TextInput, Button, Alert, Image, TouchableOpaci
 
 class Login extends React.Component {
 
+    _loginHandler(){
+        //Alert.alert('Hi', 'cool')
+        //navigator.push(routes[1]);
+    }
+
     render() {
         return (
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -27,7 +32,7 @@ class Login extends React.Component {
                         secureTextEntry
                         />
 
-                    <TouchableOpacity style={styles.button_container}>
+                    <TouchableOpacity style={styles.button_container} onPress={this._loginHandler}>
                         <Text style={styles.button}> LOGIN </Text>
                     </TouchableOpacity>
                 </View>
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     },
     button: {
         textAlign: 'center',
-        color: '#ffffff',
+        color: '#ffffff'
     }
 });
 
