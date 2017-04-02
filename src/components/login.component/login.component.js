@@ -17,7 +17,8 @@ class Login extends React.Component {
                         style={styles.img}
                         source={require("./../../assets/images/logo13.png")} />
 
-                    <Text style={styles.title}>Where you can connect!</Text>
+                    <Text style={styles.title}>Chat Box</Text>
+                    <Text style={styles.sub_title}>Where you can connect!</Text>
                 </View>
                 <View style={styles.form}>
 
@@ -42,7 +43,9 @@ class Login extends React.Component {
                         </Link>
                     </TouchableOpacity>
 
-
+                    <Link to="/signup">
+                        <Text style={styles.newAccLink}>Create new account</Text>
+                    </Link>
 
                 </View>
             </KeyboardAvoidingView>
@@ -65,6 +68,13 @@ const styles = StyleSheet.create({
         width:110
     },
     title: {
+        color: '#ffffff',
+        fontWeight: '500',
+        opacity: 0.8,
+        fontSize: 25,
+        fontFamily: 'sans-serif'
+    },
+    sub_title: {
         color: '#ffffff',
         fontWeight: '500',
         opacity: 0.8
