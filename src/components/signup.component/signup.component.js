@@ -43,7 +43,7 @@ class Signup extends React.Component {
                         />
 
                     <TouchableOpacity style={styles.button_container} onPress={this._signupHandler}>
-                        <Link to="/friends">
+                        <Link to="/dashboard">
                             <Text style={styles.button}> SIGN UP </Text>
                         </Link>
                     </TouchableOpacity>
