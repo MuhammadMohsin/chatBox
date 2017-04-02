@@ -8,15 +8,17 @@ import Signup from './../components/signup.component/signup.component.js';
 import TabsComponent from './../components/dashboard.tab.component/dashboard.tab.component.js';
 import FriendList from './../components/friends.list.component/friends.list.component.js';
 import MessageDetails from './../components/chat.details.component/chat.details.component.js';
+import SettingsComponent from './../components/settings.component/settings.component.js';
 
 const Routes = () => (
     <NativeRouter>
         <View style={styles.container}>
             <Route exact path="/" component={Login}/>
             <Route path="/signup" component={Signup}/>
+            <Route path="/dashboard" component={TabsComponent}/>
             <Route path="/friends" component={FriendList}/>
             <Route path="/messages" component={MessageDetails}/>
-            <Route path="/dashboard" component={TabsComponent}/>
+            <Route path="/settings" component={SettingsComponent}/>
         </View>
     </NativeRouter>
 );

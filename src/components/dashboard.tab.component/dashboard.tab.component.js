@@ -4,6 +4,7 @@ import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
 import FriendList from './../friends.list.component/friends.list.component.js';
 import MessageDetails from './../chat.details.component/chat.details.component.js';
+import SettingsComponent from './../settings.component/settings.component.js';
 
 class TabsComponent extends React.Component {
     constructor(props) {
@@ -21,7 +22,10 @@ class TabsComponent extends React.Component {
                     <Text name="Settings" selectedIconStyle={{borderTopWidth:2,borderTopColor:'red'}}>Settings</Text>
                 </Tabs>
                 <View style={styles.container}>
-                    {(this.state.page == 'Contacts')? <FriendList />:<MessageDetails />}
+                    {(this.state.page == 'Contacts')?
+                        <FriendList /> :
+                            (this.state.page == 'Chat')? <MessageDetails /> :
+                                                         <SettingsComponent />}
                 </View>
 
             </View>
