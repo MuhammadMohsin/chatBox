@@ -1,51 +1,27 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, Alert, Image, TouchableOpacity, KeyboardAvoidingView, ListView } from 'react-native';
 import { Link } from 'react-router-native';
 
 class FriendList extends React.Component {
 
-    _loginHandler(){
-        //Alert.alert('Hi', 'cool')
-        //navigator.push(routes[1]);
+    constructor() {
+        super();
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.state = {
+            dataSource: ds.cloneWithRows(['Assad', 'Jawad', 'Bilal', 'Tahir', 'Haseeb', 'Kamran', 'Zain'])
+        };
     }
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                <View style={styles.logo}>
-                    <Image
-                        style={styles.img}
-                        source={require("./../../assets/images/logo13.png")} />
-
-                    <Text style={styles.title}>Where you can connect!</Text>
-                </View>
-                <View style={styles.form}>
-
-                    <Text style={styles.loginText}>Friend List</Text>
-
-                    <TextInput
-                        placeholder="Enter email"
-                        placeholderTextColor="#ffffff"
-                        style={styles.input}
-                        />
-
-                    <TextInput
-                        placeholder="Enter password"
-                        placeholderTextColor="#ffffff"
-                        style={styles.input}
-                        secureTextEntry
-                        />
-
-                    <TouchableOpacity style={styles.button_container} onPress={this._loginHandler}>
-                        <Text style={styles.button}> LOGIN </Text>
-                    </TouchableOpacity>
-
-                    <Link to="/signup">
-                        <Text style={styles.newAccLink}>Create new account</Text>
-                    </Link>
-
-                </View>
-            </KeyboardAvoidingView>
+            <View style={styles.container}>
+                <Text style={styles.title}>Friends</Text>
+                <ListView
+                    dataSource={this.state.dataSource}
+                    renderRow={(rowData) =>
+                <Text>{rowData}</Text>}
+                    />
+            </View>
         );
     }
 }
@@ -56,21 +32,24 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(52, 152, 219,1.0)'
     },
     logo: {
-        alignItems:'center',
+        alignItems: 'center',
         flexGrow: 1,
         justifyContent: 'center'
     },
-    img:{
+    img: {
         height: 110,
-        width:110
+        width: 110
     },
     title: {
+        textAlign: 'center',
+        fontSize: 24,
         color: '#ffffff',
-        fontWeight: '500',
-        opacity: 0.8
+        opacity: 0.8,
+        paddingTop: 25,
+        fontFamily: 'sans-serif-medium'
     },
     form: {
-        padding:20
+        padding: 20
     },
     loginText: {
         textAlign: 'center',
