@@ -83,6 +83,10 @@ class FriendList extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.contactsTitle}>Contacts</Text>
+                </View>
+
                 <ListView
                     style={styles.container}
                     dataSource={this.state.dataSource}
@@ -96,6 +100,14 @@ class FriendList extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    header: {
+        backgroundColor: 'rgba(0, 0, 0,0.1)'
+    },
+    contactsTitle: {
+        color: 'rgba(0, 0, 0,0.7)',
+        fontSize: 18,
+        textAlign: 'center'
     }
 });
 
