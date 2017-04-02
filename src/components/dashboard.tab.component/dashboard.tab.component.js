@@ -16,10 +16,10 @@ class TabsComponent extends React.Component {
         return (
             <View style={styles.container}>
                 <Tabs selected={this.state.page} style={styles.tabs}
-                      selectedStyle={{color:'red'}} onSelect={el=>this.setState({page:el.props.name})}>
-                    <Text name="Contacts" selectedIconStyle={{borderTopWidth:2,borderTopColor:'red'}}>Contacts</Text>
-                    <Text name="Chat" selectedIconStyle={{borderTopWidth:2,borderTopColor:'red'}}>Chat</Text>
-                    <Text name="Settings" selectedIconStyle={{borderTopWidth:2,borderTopColor:'red'}}>Settings</Text>
+                      selectedStyle={{color:'rgba(52, 152, 219,1.0)'}} onSelect={el=>this.setState({page:el.props.name})}>
+                    <Text name="Contacts" selectedIconStyle={styles.selectedTab}>Contacts</Text>
+                    <Text name="Chat" selectedIconStyle={styles.selectedTab}>Chat</Text>
+                    <Text name="Settings" selectedIconStyle={styles.selectedTab}>Settings</Text>
                 </Tabs>
                 <View style={styles.container}>
                     {(this.state.page == 'Contacts')?
@@ -41,6 +41,10 @@ const styles = StyleSheet.create({
     tabs: {
         zIndex:20,
         backgroundColor:'white'
+    },
+    selectedTab: {
+        borderTopWidth:2,
+        borderTopColor:'rgba(41, 128, 185,1.0)'
     }
 });
 
