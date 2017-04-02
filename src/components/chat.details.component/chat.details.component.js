@@ -29,12 +29,17 @@ const styles = StyleSheet.create({
         zIndex:0
     },
     header: {
-        backgroundColor: 'rgba(0, 0, 0,0.1)'
+        backgroundColor: 'rgba(41, 128, 185,0.85)',
+        height: 45,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     contactsTitle: {
-        color: 'rgba(0, 0, 0,0.7)',
-        fontSize: 18,
-        textAlign: 'center'
+        color: '#ffffff',
+        fontSize: 20,
+        textAlign: 'center',
+        fontWeight: '500',
+        opacity: 0.9
     }
 });
 
