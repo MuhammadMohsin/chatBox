@@ -5,7 +5,9 @@ import { Link, Router, Route, NativeRouter } from 'react-router-native';
 /* Import Components Here!!!*/
 import Login from './../components/login.component/login.component.js';
 import Signup from './../components/signup.component/signup.component.js';
+import TabsComponent from './../components/dashboard.tab.component/dashboard.tab.component.js';
 import FriendList from './../components/friends.list.component/friends.list.component.js';
+import MessageDetails from './../components/chat.details.component/chat.details.component.js';
 
 const Routes = () => (
     <NativeRouter>
@@ -13,6 +15,8 @@ const Routes = () => (
             <Route exact path="/" component={Login}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/friends" component={FriendList}/>
+            <Route path="/messages" component={MessageDetails}/>
+            <Route path="/dashboard" component={TabsComponent}/>
         </View>
     </NativeRouter>
 );
