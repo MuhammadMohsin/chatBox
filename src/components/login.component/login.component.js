@@ -37,12 +37,12 @@ class Login extends React.Component {
                         />
 
                     <TouchableOpacity style={styles.button_container} onPress={this._loginHandler}>
-                        <Text style={styles.button}> LOGIN </Text>
+                        <Link to="/friends">
+                            <Text style={styles.button}> LOGIN </Text>
+                        </Link>
                     </TouchableOpacity>
 
-                    <Link to="/signup">
-                        <Text style={styles.newAccLink}>Create new account</Text>
-                    </Link>
+
 
                 </View>
             </KeyboardAvoidingView>
