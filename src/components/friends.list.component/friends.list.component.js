@@ -99,7 +99,8 @@ class FriendList extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        zIndex:0
     },
     header: {
         backgroundColor: 'rgba(0, 0, 0,0.1)'
