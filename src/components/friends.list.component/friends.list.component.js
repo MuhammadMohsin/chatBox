@@ -7,13 +7,14 @@ import {
     View
 } from 'react-native';
 import { Link } from 'react-router-native';
+import firebase, { firebaseDb } from '../../config/firebase';
 
 import Row from './Row'
 import demoData from './data'
 
 class FriendList extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId];
         const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`];
@@ -25,11 +26,19 @@ class FriendList extends React.Component {
             getRowData,
         });
 
-        const { dataBlob, sectionIds, rowIds } = this.formatData(demoData);
-
         this.state = {
-            dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)
-        }
+            dataSource: [],
+            isLoading: false
+        };
+
+        console.log("===========Hello World==================");
+        let firebaseRef = firebase.database().ref();
+        firebaseRef.child('Contacts').once('value').then((data)=>{
+            console.log(data.val());
+            const { dataBlob, sectionIds, rowIds }  = this.formatData(data.val());
+            this.setState({dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)});
+            this.setState({isLoading: true});
+        });
     }
 
     formatData(data) {
@@ -87,11 +96,13 @@ class FriendList extends React.Component {
                     <Text style={styles.contactsTitle}>Contacts</Text>
                 </View>
 
-                <ListView
-                    style={styles.container}
-                    dataSource={this.state.dataSource}
-                    renderRow={(data) => <Row {...data} />}
-                    />
+                {this.state.isLoading?
+                    <ListView
+                        style={styles.container}
+                        dataSource={this.state.dataSource}
+                        renderRow={(data) => <Row {...data} />}
+                    />:
+                <Text>Loading..</Text>}
             </View>
         );
     }
