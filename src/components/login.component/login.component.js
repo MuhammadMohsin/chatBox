@@ -4,9 +4,11 @@ import { Link } from 'react-router-native';
 
 class Login extends React.Component {
 
+    constructor(props){
+        super(props);
+    }
     _loginHandler(){
-        //Alert.alert('Hi', 'cool')
-        //navigator.push(routes[1]);
+        this.props.history.push('/dashboard');
     }
 
     render() {
@@ -37,10 +39,8 @@ class Login extends React.Component {
                         secureTextEntry
                         />
 
-                    <TouchableOpacity style={styles.button_container} onPress={this._loginHandler}>
-                        <Link to="/dashboard">
-                            <Text style={styles.button}> LOGIN </Text>
-                        </Link>
+                    <TouchableOpacity style={styles.button_container} onPress={this._loginHandler.bind(this)}>
+                        <Text style={styles.button}> LOGIN </Text>
                     </TouchableOpacity>
 
                     <Link to="/signup">
