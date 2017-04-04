@@ -51,3 +51,6 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+# exclude firebase config file
+firebase.js
