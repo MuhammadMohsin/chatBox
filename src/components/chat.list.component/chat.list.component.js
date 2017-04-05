@@ -32,7 +32,7 @@ class MessageList extends React.Component {
         let firebaseRef = firebase.database().ref();
         firebaseRef.child('users').once('value').then((data)=>{
             console.log(data.val());
-            const { dataBlob, sectionIds, rowIds }  = this.formatData(data.val()[0].Contacts);
+            const { dataBlob, sectionIds, rowIds }  = this.formatData(data.val()[0].MessagesList);
             this.setState({dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)});
             this.setState({isLoading: true});
         });
@@ -47,7 +47,7 @@ class MessageList extends React.Component {
 
         for (let sectionId = 0; sectionId < alphabet.length; sectionId++) {
             const currentChar = alphabet[sectionId];
-            const users = data.filter((user) => user.name.first.toUpperCase().indexOf(currentChar) === 0);
+            const users = data.filter((user) => user.receiverName.toUpperCase().indexOf(currentChar) === 0);
             if (users.length > 0) {
                 sectionIds.push(sectionId);
                 dataBlob[sectionId] = { character: currentChar };

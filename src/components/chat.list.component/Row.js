@@ -10,9 +10,16 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#e9e9e9'
     },
-    text: {
+    nameTitle: {
         marginLeft: 12,
-        fontSize: 16
+        fontSize: 16,
+        color: 'rgba(41, 128, 185, 1.0)',
+        flex: 1,flexDirection:'row', flexWrap:'wrap'
+    },
+    msgText: {
+        flex: 3,
+        marginLeft: 12,
+        fontSize: 13,flexDirection:'row', flexWrap:'nowrap'
     },
     photo: {
         height: 40,
@@ -23,9 +30,12 @@ const styles = StyleSheet.create({
 
 const Row = (props) => (
     <View style={styles.container}>
-        <Image source={{ uri: props.picture.large}} style={styles.photo} />
-        <Text style={styles.text}>
-            {`${props.name.first.charAt(0).toLocaleUpperCase() + props.name.first.slice(1).toLocaleLowerCase()} ${props.name.last.charAt(0).toLocaleUpperCase() + props.name.last.slice(1).toLocaleLowerCase()} `}
+        {/*<Image source={{ uri: props.picture.large}} style={styles.photo} />*/}
+        <Text style={styles.nameTitle}>
+            {`${props.receiverName.charAt(0).toLocaleUpperCase() + props.receiverName.slice(1).toLocaleLowerCase()}`}
+        </Text>
+        <Text style={styles.msgText}>
+            {`${props.lastMessage}`}
         </Text>
     </View>
 );
