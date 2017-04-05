@@ -6,13 +6,10 @@ import {
     Text,
     View
 } from 'react-native';
-import { Link } from 'react-router-native';
 import firebase, { firebaseDb } from '../../config/firebase';
-
 import Row from './Row'
-import demoData from './data'
 
-class FriendList extends React.Component {
+class MessageList extends React.Component {
     constructor(props) {
         super(props);
 
@@ -42,45 +39,24 @@ class FriendList extends React.Component {
     }
 
     formatData(data) {
-        // We're sorting by alphabetically so we need the alphabet
         const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-        // Need somewhere to store our data
         const dataBlob = {};
         const sectionIds = [];
         const rowIds = [];
 
-        // Each section is going to represent a letter in the alphabet so we loop over the alphabet
         for (let sectionId = 0; sectionId < alphabet.length; sectionId++) {
-            // Get the character we're currently looking for
             const currentChar = alphabet[sectionId];
-
-            // Get users whose first name starts with the current letter
             const users = data.filter((user) => user.name.first.toUpperCase().indexOf(currentChar) === 0);
-
-            // If there are any users who have a first name starting with the current letter then we'll
-            // add a new section otherwise we just skip over it
             if (users.length > 0) {
-                // Add a section id to our array so the listview knows that we've got a new section
                 sectionIds.push(sectionId);
-
-                // Store any data we would want to display in the section header. In our case we want to show
-                // the current character
                 dataBlob[sectionId] = { character: currentChar };
 
-                // Setup a new array that we can store the row ids for this section
                 rowIds.push([]);
 
-                // Loop over the valid users for this section
                 for (let i = 0; i < users.length; i++) {
-                    // Create a unique row id for the data blob that the listview can use for reference
                     const rowId = `${sectionId}:${i}`;
-
-                    // Push the row id to the row ids array. This is what listview will reference to pull
-                    // data from our data blob
                     rowIds[rowIds.length - 1].push(rowId);
-
-                    // Store the data we care about for this row
                     dataBlob[rowId] = users[i];
                 }
             }
@@ -93,7 +69,7 @@ class FriendList extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Text style={styles.contactsTitle}>Contacts</Text>
+                    <Text style={styles.contactsTitle}>Messages</Text>
                 </View>
 
                 {this.state.isLoading?
@@ -102,7 +78,7 @@ class FriendList extends React.Component {
                         dataSource={this.state.dataSource}
                         renderRow={(data) => <Row {...data} />}
                     />:
-                <Text>Loading..</Text>}
+                    <Text>Loading..</Text>}
             </View>
         );
     }
@@ -128,4 +104,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default FriendList;
+export default MessageList;

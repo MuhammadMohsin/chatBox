@@ -7,6 +7,7 @@ import Login from './../components/login.component/login.component.js';
 import Signup from './../components/signup.component/signup.component.js';
 import TabsComponent from './../components/dashboard.tab.component/dashboard.tab.component.js';
 import FriendList from './../components/friends.list.component/friends.list.component.js';
+import MessageList from './../components/chat.list.component/chat.list.component';
 import MessageDetails from './../components/chat.details.component/chat.details.component.js';
 import SettingsComponent from './../components/settings.component/settings.component.js';
 
@@ -17,7 +18,8 @@ const Routes = () => (
             <Route path="/signup" component={Signup}/>
             <Route path="/dashboard" component={TabsComponent}/>
             <Route path="/friends" component={FriendList}/>
-            <Route path="/messages" component={MessageDetails}/>
+            <Route path="/messageList" component={MessageList}/>
+            <Route path="/message" component={MessageDetails}/>
             <Route path="/settings" component={SettingsComponent}/>
         </View>
     </NativeRouter>

@@ -3,6 +3,7 @@ import Tabs from 'react-native-tabs';
 import { AppRegistry, StyleSheet, Text, View } from 'react-native';
 
 import FriendList from './../friends.list.component/friends.list.component.js';
+import MessageList from './../chat.list.component/chat.list.component';
 import MessageDetails from './../chat.details.component/chat.details.component.js';
 import SettingsComponent from './../settings.component/settings.component.js';
 
@@ -24,7 +25,7 @@ class TabsComponent extends React.Component {
                 <View style={styles.container}>
                     {(this.state.page == 'Contacts')?
                         <FriendList /> :
-                            (this.state.page == 'Chat')? <MessageDetails /> :
+                            (this.state.page == 'Chat')? <MessageList /> :
                                                          <SettingsComponent />}
                 </View>
 
