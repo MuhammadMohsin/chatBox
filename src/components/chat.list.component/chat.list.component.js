@@ -1,85 +1,51 @@
-import React from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    ListView,
-    Text,
-    View
-} from 'react-native';
-import firebase, { firebaseDb } from '../../config/firebase';
-import Row from './Row'
+import React, {Component} from 'react';
+import {Container, Content, List, ListItem, Thumbnail, Text, Body,Header} from 'native-base';
+import {ListView, StyleSheet, View} from 'react-native';
 
-class MessageList extends React.Component {
+import firebase, {firebaseDb} from '../../config/firebase';
+
+class MessageList extends Component {
     constructor(props) {
         super(props);
 
-        const getSectionData = (dataBlob, sectionId) => dataBlob[sectionId];
-        const getRowData = (dataBlob, sectionId, rowId) => dataBlob[`${rowId}`];
-
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2,
-            sectionHeaderHasChanged : (s1, s2) => s1 !== s2,
-            getSectionData,
-            getRowData,
-        });
-
         this.state = {
             dataSource: [],
-            isLoading: false
+            isLoading: false,
+            messageList: []
         };
 
-        console.log("===========Hello World==================");
         let firebaseRef = firebase.database().ref();
-        firebaseRef.child('users').once('value').then((data)=>{
+        firebaseRef.child('users').once('value').then((data)=> {
             console.log(data.val());
-            const { dataBlob, sectionIds, rowIds }  = this.formatData(data.val()[0].MessagesList);
-            this.setState({dataSource: ds.cloneWithRowsAndSections(dataBlob, sectionIds, rowIds)});
+            this.setState({messageList: data.val()[0].MessagesList});
             this.setState({isLoading: true});
         });
     }
 
-    formatData(data) {
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-
-        const dataBlob = {};
-        const sectionIds = [];
-        const rowIds = [];
-
-        for (let sectionId = 0; sectionId < alphabet.length; sectionId++) {
-            const currentChar = alphabet[sectionId];
-            const users = data.filter((user) => user.receiverName.toUpperCase().indexOf(currentChar) === 0);
-            if (users.length > 0) {
-                sectionIds.push(sectionId);
-                dataBlob[sectionId] = { character: currentChar };
-
-                rowIds.push([]);
-
-                for (let i = 0; i < users.length; i++) {
-                    const rowId = `${sectionId}:${i}`;
-                    rowIds[rowIds.length - 1].push(rowId);
-                    dataBlob[rowId] = users[i];
-                }
-            }
-        }
-
-        return { dataBlob, sectionIds, rowIds };
-    }
-
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <Text style={styles.contactsTitle}>Messages</Text>
-                </View>
-
-                {this.state.isLoading?
-                    <ListView
-                        style={styles.container}
-                        dataSource={this.state.dataSource}
-                        renderRow={(data) => <Row {...data} />}
-                    />:
-                    <Text>Loading..</Text>}
-            </View>
+            <Container>
+                <Header style={StyleSheet.flatten(styles.header)}>
+                    <Text style={StyleSheet.flatten(styles.contactsTitle)}>Messages</Text>
+                </Header>
+                <Content>
+                    {this.state.isLoading ?
+                        <List
+                            dataArray={this.state.messageList}
+                            renderRow= {(data) =>
+                                    <ListItem>
+                                        <Thumbnail square size={80} source={require('./../../assets/images/logo13.png')}/>
+                                        <Body style={StyleSheet.flatten(styles.msgRow)}>
+                                            <Text style={StyleSheet.flatten(styles.nameTitle)}>{data.receiverName}</Text>
+                                            <Text note style={StyleSheet.flatten(styles.msgText)}>{data.lastMessage}</Text>
+                                        </Body>
+                                    </ListItem>
+                                }>
+                        </List>
+                        :
+                        <Text>Loading..</Text>}
+                </Content>
+            </Container>
         );
     }
 }
@@ -91,7 +57,6 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: 'rgba(41, 128, 185,0.85)',
-        height: 45,
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -101,7 +66,16 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '500',
         opacity: 0.9
+    },
+    nameTitle: {
+        marginLeft: 12,
+        fontSize: 16,
+        color: 'rgba(41, 128, 185, 1.0)',
+    },
+    msgRow: {
+        flex: 1,
+    },
+    msgText: {
     }
 });
-
 export default MessageList;
