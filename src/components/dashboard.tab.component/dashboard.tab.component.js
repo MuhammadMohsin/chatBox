@@ -14,19 +14,24 @@ class TabsComponent extends React.Component {
     }
 
     render() {
+        const {
+            container,
+            tabs,
+            selectedTab
+        } = styles;
         return (
-            <View style={styles.container}>
-                <Tabs selected={this.state.page} style={styles.tabs}
+            <View style={container}>
+                <Tabs selected={this.state.page} style={tabs}
                       selectedStyle={{color:'rgba(52, 152, 219,1.0)'}} onSelect={el=>this.setState({page:el.props.name})}>
-                    <Text name="Contacts" selectedIconStyle={styles.selectedTab}>Contacts</Text>
-                    <Text name="Chat" selectedIconStyle={styles.selectedTab}>Chat</Text>
-                    <Text name="Settings" selectedIconStyle={styles.selectedTab}>Settings</Text>
+                    <Text name="Contacts" selectedIconStyle={selectedTab}>Contacts</Text>
+                    <Text name="Chat" selectedIconStyle={selectedTab}>Chat</Text>
+                    <Text name="Settings" selectedIconStyle={selectedTab}>Settings</Text>
                 </Tabs>
                 <View style={styles.container}>
                     {(this.state.page == 'Contacts')?
                         <FriendList /> :
-                            (this.state.page == 'Chat')? <MessageList /> :
-                                                         <SettingsComponent />}
+                            (this.state.page == 'Chat')? <MessageList {...this.props}/> :
+                                                         <SettingsComponent {...this.props} />}
                 </View>
 
             </View>
