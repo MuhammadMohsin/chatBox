@@ -22,25 +22,36 @@ class MessageList extends Component {
         });
     }
 
+    renderRow(filter) {
+        var onPress = () => {
+            console.log(this.props);
+            if (this.props.history)
+                this.props.history.push("/message");
+        }
+        return <ListItem onPress={onPress}>
+            <Thumbnail square size={80} source={require('./../../assets/images/logo13.png')}/>
+            <Body style={StyleSheet.flatten(styles.msgRow)}>
+            <Text style={StyleSheet.flatten(styles.nameTitle)}>{filter.receiverName}</Text>
+            <Text note style={StyleSheet.flatten(styles.msgText)}>{filter.lastMessage}</Text>
+            </Body>
+        </ListItem>;
+    }
+
     render() {
+            const {
+                header,
+                contactsTitle
+            } = styles;
         return (
             <Container>
-                <Header style={StyleSheet.flatten(styles.header)}>
-                    <Text style={StyleSheet.flatten(styles.contactsTitle)}>Messages</Text>
+                <Header style={StyleSheet.flatten(header)}>
+                    <Text style={StyleSheet.flatten(contactsTitle)}>Messages</Text>
                 </Header>
                 <Content>
                     {this.state.isLoading ?
                         <List
                             dataArray={this.state.messageList}
-                            renderRow= {(data) =>
-                                    <ListItem>
-                                        <Thumbnail square size={80} source={require('./../../assets/images/logo13.png')}/>
-                                        <Body style={StyleSheet.flatten(styles.msgRow)}>
-                                            <Text style={StyleSheet.flatten(styles.nameTitle)}>{data.receiverName}</Text>
-                                            <Text note style={StyleSheet.flatten(styles.msgText)}>{data.lastMessage}</Text>
-                                        </Body>
-                                    </ListItem>
-                                }>
+                            renderRow= {this.renderRow.bind(this)}>
                         </List>
                         :
                         <Text>Loading..</Text>}
@@ -51,10 +62,6 @@ class MessageList extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        zIndex:0
-    },
     header: {
         backgroundColor: 'rgba(41, 128, 185,0.85)',
         justifyContent: 'center',
@@ -66,16 +73,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: '500',
         opacity: 0.9
-    },
-    nameTitle: {
-        marginLeft: 12,
-        fontSize: 16,
-        color: 'rgba(41, 128, 185, 1.0)',
-    },
-    msgRow: {
-        flex: 1,
-    },
-    msgText: {
     }
 });
 export default MessageList;

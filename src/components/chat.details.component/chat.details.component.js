@@ -14,7 +14,7 @@ class MessageDetails extends React.Component {
             messages: [
                 {
                     _id: 1,
-                    text: 'Hello developer',
+                    text: 'Mohsin Here',
                     createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
                     user: {
                         _id: 2,
@@ -33,10 +33,14 @@ class MessageDetails extends React.Component {
         });
     }
     render() {
+            const {
+                header,
+                contactsTitle
+            } = styles;
         return (
             <Container>
-                <Header style={StyleSheet.flatten(styles.header)}>
-                    <Text style={StyleSheet.flatten(styles.contactsTitle)}>Messages</Text>
+                <Header style={StyleSheet.flatten(header)}>
+                    <Text style={StyleSheet.flatten(contactsTitle)}>Messages</Text>
                 </Header>
 
                 <GiftedChat
