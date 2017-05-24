@@ -1,50 +1,70 @@
-import React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import React, {Component} from 'react';
+import {
+    Text,
+    View,
+    StyleSheet,
+    TextInput,
+    Button,
+    Image,
+    TouchableOpacity,
+    KeyboardAvoidingView
+} from 'react-native';
 import { Link } from 'react-router-native';
 
 class Signup extends React.Component {
 
-    _signupHandler(){
-        //Alert.alert('Hi', 'cool')
+    _signupHandler() {
         //navigator.push(routes[1]);
     }
 
     render() {
+        const { 
+            container,
+            logo,
+            img,
+            title,
+            sub_title,
+            form,
+            createAccText,
+            input,
+            button_container,
+            button
+            } = styles;
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                <View style={styles.logo}>
+            <KeyboardAvoidingView behavior="padding" style={container}>
+                <View style={logo}>
                     <Image
-                        style={styles.img}
+                        style={img}
                         source={require("./../../assets/images/logo13.png")} />
 
-                    <Text style={styles.title}>Chat Box</Text>
-                    <Text style={styles.sub_title}>Where you can connect!</Text>
+                    <Text style={title}>Chat Box</Text>
+                    <Text style={sub_title}>Where you can connect!</Text>
                 </View>
-                <View style={styles.form}>
-                    <Text style={styles.createAccText}>Create Account</Text>
+                <View style={form}>
+                    <Text style={createAccText}>Create Account</Text>
                     <TextInput
                         placeholder="Enter email"
                         placeholderTextColor="#ffffff"
-                        style={styles.input}
-                        />
+                        style={input}
+                    />
 
                     <TextInput
                         placeholder="Enter password"
                         placeholderTextColor="#ffffff"
-                        style={styles.input}
+                        style={input}
                         secureTextEntry
-                        />
+                    />
 
                     <TextInput
                         placeholder="Confirm password"
                         placeholderTextColor="#ffffff"
-                        style={styles.input}
+                        style={input}
                         secureTextEntry
-                        />
+                    />
 
-                    <TouchableOpacity style={styles.button_container} onPress={this._signupHandler}>
+                    <TouchableOpacity style={button_container} onPress={this._signupHandler}>
                         <Link to="/dashboard">
-                            <Text style={styles.button}> SIGN UP </Text>
+                            <Text style={button}> SIGN UP </Text>
                         </Link>
                     </TouchableOpacity>
                 </View>
@@ -59,13 +79,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(52, 152, 219,1.0)'
     },
     logo: {
-        alignItems:'center',
+        alignItems: 'center',
         flexGrow: 1,
         justifyContent: 'center'
     },
-    img:{
+    img: {
         height: 110,
-        width:110
+        width: 110
     },
     title: {
         color: '#ffffff',
@@ -80,7 +100,7 @@ const styles = StyleSheet.create({
         opacity: 0.8
     },
     form: {
-        padding:20
+        padding: 20
     },
     createAccText: {
         textAlign: 'center',

@@ -1,5 +1,14 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Alert, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Text, 
+    View, 
+    StyleSheet, 
+    TextInput, 
+    Button, 
+    Alert, 
+    Image, 
+    TouchableOpacity, 
+    KeyboardAvoidingView 
+} from 'react-native';
 import { Link } from 'react-router-native';
 
 class Login extends React.Component {
@@ -12,39 +21,53 @@ class Login extends React.Component {
     }
 
     render() {
+        const {
+            container,
+            logo,
+            img,
+            title,
+            sub_title,
+            form,
+            loginText,
+            input,
+            button_container,
+            button,
+            newAccLink
+        } = styles;
+
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                <View style={styles.logo}>
+            <KeyboardAvoidingView behavior="padding" style={container}>
+                <View style={logo}>
                     <Image
-                        style={styles.img}
+                        style={img}
                         source={require("./../../assets/images/logo13.png")} />
 
-                    <Text style={styles.title}>Chat Box</Text>
-                    <Text style={styles.sub_title}>Where you can connect!</Text>
+                    <Text style={title}>Chat Box</Text>
+                    <Text style={sub_title}>Where you can connect!</Text>
                 </View>
-                <View style={styles.form}>
+                <View style={form}>
 
-                    <Text style={styles.loginText}>Getting Started</Text>
+                    <Text style={loginText}>Getting Started</Text>
 
                     <TextInput
                         placeholder="Enter email"
                         placeholderTextColor="#ffffff"
-                        style={styles.input}
+                        style={input}
                         />
 
                     <TextInput
                         placeholder="Enter password"
                         placeholderTextColor="#ffffff"
-                        style={styles.input}
+                        style={input}
                         secureTextEntry
                         />
 
-                    <TouchableOpacity style={styles.button_container} onPress={this._loginHandler.bind(this)}>
-                        <Text style={styles.button}> LOGIN </Text>
+                    <TouchableOpacity style={button_container} onPress={this._loginHandler.bind(this)}>
+                        <Text style={button}> LOGIN </Text>
                     </TouchableOpacity>
 
                     <Link to="/signup">
-                        <Text style={styles.newAccLink}>Create new account</Text>
+                        <Text style={newAccLink}>Create new account</Text>
                     </Link>
 
                 </View>
