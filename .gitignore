@@ -54,3 +54,6 @@ fastlane/screenshots
 
 # exclude firebase config file
 firebase.js
+
+#exclude web dist folder
+web/dist/index_bundle.js
