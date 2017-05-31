@@ -3,13 +3,13 @@ import { View, StyleSheet } from 'react-native';
 import { Link, Router, Route, NativeRouter } from 'react-router-native';
 
 /* Import Components Here!!!*/
-import Login from './../components/login.component/login.component.js';
-import Signup from './../components/signup.component/signup.component.js';
-import TabsComponent from './../components/dashboard.tab.component/dashboard.tab.component.js';
-import FriendList from './../components/friends.list.component/friends.list.component.js';
-import MessageList from './../components/chat.list.component/chat.list.component';
-import MessageDetails from './../components/chat.details.component/chat.details.component.js';
-import SettingsComponent from './../components/settings.component/settings.component.js';
+import Login from './../resources/login.component/login.component.js';
+import Signup from './../resources/signup.component/signup.component.js';
+import TabsComponent from './../resources/dashboard.tab.component/dashboard.tab.component.js';
+import FriendList from './../resources/friends.list.component/friends.list.component.js';
+import MessageList from './../resources/chat.list.component/chat.list.component';
+import MessageDetails from './../resources/chat.details.component/chat.details.component.js';
+import SettingsComponent from './../resources/settings.component/settings.component.js';
 
 const Routes = () => (
     <NativeRouter>
